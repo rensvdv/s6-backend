@@ -18,7 +18,6 @@ De services draaien afzonderlijk maar vormen samen de backend omgeving.
 backend/
   api-gateway/
   kafka/
-    Dockerfile of docker-compose.yml
   music-service/
   recommendation-service/
  
