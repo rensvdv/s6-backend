@@ -25,9 +25,7 @@ backend/
 
 ---
 
-## Services
-
-### 1. **Kafka starten**
+## 1. **Kafka starten**
 
 Ga naar de kafka-folder:
 
@@ -45,7 +43,7 @@ De UI draait op **localhost:8090**.
 
 ---
 
-### 2. **Services **
+### 2. **Services**
 
 #### api-gateway
 * Draait op: **[http://localhost:8080](http://localhost:8080)**
