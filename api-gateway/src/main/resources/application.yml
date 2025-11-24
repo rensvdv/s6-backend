@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: music-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/music/**
+              filters:
+                - StripPrefix=1
+
+            - id: recommendation-service
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/recommendations/**
+              filters:
+                - StripPrefix=1
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
