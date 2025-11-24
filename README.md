@@ -17,10 +17,11 @@ De services draaien afzonderlijk maar vormen samen de backend omgeving.
 ```
 backend/
   api-gateway/
-  music-service/
-  recommendation-service/
   kafka/
     Dockerfile of docker-compose.yml
+  music-service/
+  recommendation-service/
+ 
 ```
 
 ---
