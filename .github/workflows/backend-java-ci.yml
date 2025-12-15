@@ -7,8 +7,6 @@ on:
       - 'backend/**'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'backend/**'
 
 jobs:
   api-gateway:
@@ -16,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend/api-gateway
+        working-directory: api-gateway
 
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend/music-service
+        working-directory: music-service
 
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend/rec-service
+        working-directory: rec-service
 
     steps:
       - uses: actions/checkout@v4
