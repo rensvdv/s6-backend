@@ -21,11 +21,11 @@ jobs:
         with:
           filters: |
             api-gateway:
-              - 'backend/api-gateway/**'
+              - 'api-gateway/**'
             music-service:
-              - 'backend/music-service/**'
+              - 'music-service/**'
             recommendation-service:
-              - 'backend/recommendation-service/**'
+              - 'recommendation-service/**'
 
   api-gateway:
     needs: changes
@@ -34,7 +34,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub
@@ -46,7 +45,7 @@ jobs:
       - name: Build & push API Gateway
         uses: docker/build-push-action@v5
         with:
-          context: backend/api-gateway
+          context: api-gateway
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.sha }}
@@ -70,7 +69,7 @@ jobs:
       - name: Build & push Music Service
         uses: docker/build-push-action@v5
         with:
-          context: backend/music-service
+          context: music-service
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/music-service:${{ github.sha }}
@@ -94,7 +93,7 @@ jobs:
       - name: Build & push Recommendation Service
         uses: docker/build-push-action@v5
         with:
-          context: backend/recommendation-service
+          context: recommendation-service
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/recommendation-service:${{ github.sha }}
