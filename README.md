@@ -6,7 +6,6 @@ Dit project bestaat uit meerdere Spring Boot services die samen een kleine micro
 * **API Gateway (Spring Cloud Gateway)** – routering naar services
 * **Music Service** – CRUD voor muziek/albums
 * **Recommendation Service** – aanbevelingen
-* **Kafka Setup** – Docker-compose voor Kafka
 
 De services draaien afzonderlijk maar vormen samen de backend omgeving.
 
@@ -17,7 +16,6 @@ De services draaien afzonderlijk maar vormen samen de backend omgeving.
 ```
 backend/
   api-gateway/
-  kafka/
   music-service/
   recommendation-service/
  
