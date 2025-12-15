@@ -12,15 +12,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SongService {
     private final SongRepository songRepository;
-    private final KafkaTemplate<String, Song> kafkaTemplate;
+//    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    private final KafkaTemplate<String, String> stringKafkaTemplate;
+    private final KafkaTemplate<String, Song> jsonKafkaTemplate;
 
     public List<Song> getAllSongs() {
         return songRepository.findAll();
     }
 
     public void addSong(Song song) {
-        Song saved = songRepository.save(song);
-        kafkaTemplate.send("music.new-releases", saved.getArtist(), saved);
+        Song savedSong = songRepository.save(song);
+        String artist = savedSong.getArtist();
+        jsonKafkaTemplate.send("music.new-releases", savedSong);
 
     }
+
+    public void messageTest(String topic, String message) {
+        stringKafkaTemplate.send(topic, message);
+    }
+
+
 }

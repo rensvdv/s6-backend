@@ -23,8 +23,12 @@ public class SongController {
     @PostMapping()
     public ResponseEntity<String> addAlbum(@RequestBody Song song) {
         songService.addSong(song);
-        System.out.println(" - Artiest: " + song.getArtist());
-        System.out.println(" - Releasedate: " + song.getArtist());
         return new ResponseEntity<>("Song Added", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<String> publishMessage(@RequestParam("message") String message) {
+        songService.messageTest("my-topic", message);
+        return ResponseEntity.ok("Message published to Kafka topic");
     }
 }
