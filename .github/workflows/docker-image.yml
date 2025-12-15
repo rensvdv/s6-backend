@@ -51,7 +51,7 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/music-service:${{ github.sha }}
             ${{ secrets.DOCKER_USERNAME }}/music-service:latest
 
-  recommendation-service:
+  rec-service:
     runs-on: ubuntu-latest
 
     steps:
@@ -67,8 +67,8 @@ jobs:
       - name: Build & push Recommendation Service
         uses: docker/build-push-action@v5
         with:
-          context: recommendation-service
+          context: rec-service
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/recommendation-service:${{ github.sha }}
-            ${{ secrets.DOCKER_USERNAME }}/recommendation-service:latest
+            ${{ secrets.DOCKER_USERNAME }}/rec-service:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/rec-service:latest
