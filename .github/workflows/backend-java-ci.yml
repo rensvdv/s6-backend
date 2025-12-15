@@ -1,0 +1,66 @@
+name: Backend Java CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  api-gateway:
+    name: Build API Gateway
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/api-gateway
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - run: mvn clean verify
+
+  music-service:
+    name: Build Music Service
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/music-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - run: mvn clean verify
+
+  recommendation-service:
+    name: Build Recommendation Service
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/recommendation-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - run: mvn clean verify
