@@ -47,12 +47,12 @@ jobs:
 
       - run: mvn clean verify
 
-  recommendation-service:
+  rec-service:
     name: Build Recommendation Service
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend/recommendation-service
+        working-directory: backend/rec-service
 
     steps:
       - uses: actions/checkout@v4
