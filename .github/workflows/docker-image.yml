@@ -7,29 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      api-gateway: ${{ steps.filter.outputs.api-gateway }}
-      music-service: ${{ steps.filter.outputs.music-service }}
-      recommendation-service: ${{ steps.filter.outputs.recommendation-service }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            api-gateway:
-              - 'api-gateway/**'
-            music-service:
-              - 'music-service/**'
-            recommendation-service:
-              - 'recommendation-service/**'
-
   api-gateway:
-    needs: changes
-    if: needs.changes.outputs.api-gateway == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -52,8 +30,6 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
 
   music-service:
-    needs: changes
-    if: needs.changes.outputs.music-service == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -76,8 +52,6 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/music-service:latest
 
   recommendation-service:
-    needs: changes
-    if: needs.changes.outputs.recommendation-service == 'true'
     runs-on: ubuntu-latest
 
     steps:
