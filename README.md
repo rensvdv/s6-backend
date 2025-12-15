@@ -25,6 +25,8 @@ backend/
 
 ### **Services**
 
+De services communiceren met elkaar via Apache Kafka, specifiek de Docker image van Kafka Native 4.1.1 (https://hub.docker.com/layers/apache/kafka-native/4.1.1), De Music-service is de publisher en de Rec-service is de subsrciber.
+
 #### api-gateway
 * Draait op: **[http://localhost:8080](http://localhost:8080)**
 
