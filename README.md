@@ -12,7 +12,7 @@ De services draaien afzonderlijk maar vormen samen de backend omgeving.
 
 ---
 
-## 📁 Projectstructuur
+## Projectstructuur
 
 ```
 backend/
@@ -25,25 +25,7 @@ backend/
 
 ---
 
-## 1. **Kafka starten**
-
-Ga naar de kafka-folder:
-
-```bash
-cd kafka
-```
-
-Als er een docker-compose.yml staat:
-
-```bash
-docker compose up -d
-```
-Kafka draait op **localhost:9092**.
-De UI draait op **localhost:8090**.
-
----
-
-### 2. **Services**
+### **Services**
 
 #### api-gateway
 * Draait op: **[http://localhost:8080](http://localhost:8080)**
