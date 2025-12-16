@@ -23,6 +23,13 @@ jobs:
           java-version: 17
           cache: maven
 
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@v3
+        with:
+          project: api-gateway
+          path: api-gateway
+          format: HTML
+
       - run: mvn clean verify
 
   music-service:
@@ -41,6 +48,13 @@ jobs:
           java-version: 17
           cache: maven
 
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@v3
+        with:
+          project: music-service
+          path: music-service
+          format: HTML
+
       - run: mvn clean verify
 
   rec-service:
@@ -58,5 +72,12 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: maven
+
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@v3
+        with:
+          project: rec-service
+          path: rec-service
+          format: HTML
 
       - run: mvn clean verify
