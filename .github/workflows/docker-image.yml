@@ -3,16 +3,18 @@ name: Backend Docker Images
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   api-gateway:
+    name: Build & Scan API Gateway Image
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -20,7 +22,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push API Gateway
+      - name: Build API Gateway image (local)
+        uses: docker/build-push-action@v5
+        with:
+          context: api-gateway
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.sha }}
+
+      - name: Scan API Gateway image with Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{ github.sha }}
+          severity: CRITICAL,HIGH
+          exit-code: 1
+
+      - name: Push API Gateway image
         uses: docker/build-push-action@v5
         with:
           context: api-gateway
@@ -30,11 +46,15 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
 
   music-service:
+    name: Build & Scan Music Service Image
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -42,7 +62,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push Music Service
+      - name: Build Music Service image (local)
+        uses: docker/build-push-action@v5
+        with:
+          context: music-service
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/music-service:${{ github.sha }}
+
+      - name: Scan Music Service image with Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/music-service:${{ github.sha }}
+          severity: CRITICAL,HIGH
+          exit-code: 1
+
+      - name: Push Music Service image
         uses: docker/build-push-action@v5
         with:
           context: music-service
@@ -52,11 +86,15 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/music-service:latest
 
   rec-service:
+    name: Build & Scan Recommendation Service Image
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -64,7 +102,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push Recommendation Service
+      - name: Build Recommendation Service image (local)
+        uses: docker/build-push-action@v5
+        with:
+          context: rec-service
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/rec-service:${{ github.sha }}
+
+      - name: Scan Recommendation Service image with Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/rec-service:${{ github.sha }}
+          severity: CRITICAL,HIGH
+          exit-code: 1
+
+      - name: Push Recommendation Service image
         uses: docker/build-push-action@v5
         with:
           context: rec-service
