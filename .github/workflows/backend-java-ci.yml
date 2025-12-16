@@ -25,11 +25,12 @@ jobs:
 
       - name: OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
+        env:
+          JAVA_HOME: /opt/jdk
         with:
           project: api-gateway
           path: api-gateway
           format: HTML
-          docker: false
           out: reports
 
       - run: mvn clean verify
@@ -52,11 +53,12 @@ jobs:
 
       - name: OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
+        env:
+          JAVA_HOME: /opt/jdk
         with:
           project: music-service
           path: music-service
           format: HTML
-          docker: false
           out: reports
 
       - run: mvn clean verify
@@ -79,11 +81,12 @@ jobs:
 
       - name: OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
+        env:
+          JAVA_HOME: /opt/jdk
         with:
           project: rec-service
           path: rec-service
           format: HTML
-          docker: false
           out: reports
 
       - run: mvn clean verify
