@@ -29,6 +29,8 @@ jobs:
           project: api-gateway
           path: api-gateway
           format: HTML
+          docker: false
+          out: reports
 
       - run: mvn clean verify
 
@@ -54,6 +56,8 @@ jobs:
           project: music-service
           path: music-service
           format: HTML
+          docker: false
+          out: reports
 
       - run: mvn clean verify
 
@@ -79,5 +83,7 @@ jobs:
           project: rec-service
           path: rec-service
           format: HTML
+          docker: false
+          out: reports
 
       - run: mvn clean verify
