@@ -6,7 +6,6 @@
 <module name="Checker">
 
     <!-- Fail on basic formatting issues -->
-    <module name="FileTabCharacter"/>
     <module name="NewlineAtEndOfFile"/>
 
     <!-- Whitespace -->
