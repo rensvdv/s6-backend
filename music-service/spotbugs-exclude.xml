@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <FindBugsFilter>
-    <!-- Negeer EI_EXPOSE_REP2 voor SongService -->
+    <!-- Suppress EI_EXPOSE_REP2 for SongController -->
     <Match>
-        <Class name="com.rensv.music_service.service.SongService"/>
-        <Bug code="EI_EXPOSE_REP2"/>
+        <Class name="com.rensv.music_service.controller.SongController" />
+        <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
 
-    <!-- Negeer EI_EXPOSE_REP2 voor SongController -->
+    <!-- Suppress EI_EXPOSE_REP2 for SongService -->
     <Match>
-        <Class name="com.rensv.music_service.controller.SongController"/>
-        <Bug code="EI_EXPOSE_REP2"/>
+        <Class name="com.rensv.music_service.service.SongService" />
+        <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
 </FindBugsFilter>
