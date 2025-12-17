@@ -3,7 +3,6 @@ package com.rensv.music_service.service;
 import com.rensv.music_service.model.Song;
 import com.rensv.music_service.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,11 +10,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SongService {
-    @Autowired
     private final SongRepository songRepository;
-    @Autowired
     private final KafkaTemplate<String, String> stringKafkaTemplate;
-    @Autowired
     private final KafkaTemplate<String, Song> jsonKafkaTemplate;
 
     public List<Song> getAllSongs() {

@@ -1,0 +1,5 @@
+<FindBugsFilter>
+    <Match>
+        <Bug code="EI_EXPOSE_REP2"/>
+    </Match>
+</FindBugsFilter>
