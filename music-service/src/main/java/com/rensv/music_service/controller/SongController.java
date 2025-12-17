@@ -25,8 +25,8 @@ public class SongController {
         return songService.getAllSongs();
     }
 
-    @PostMapping()
-    public ResponseEntity<String> addAlbum(@RequestBody Song song) {
+    @PostMapping
+    public ResponseEntity<String> addSong(@RequestBody Song song) {
         songService.addSong(song);
         return new ResponseEntity<>("Song Added", HttpStatus.CREATED);
     }

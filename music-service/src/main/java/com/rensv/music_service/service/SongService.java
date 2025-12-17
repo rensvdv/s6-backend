@@ -5,7 +5,6 @@ import com.rensv.music_service.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -23,8 +22,12 @@ public class SongService {
 
     public void addSong(Song song) {
         Song savedSong = songRepository.save(song);
-        String artist = savedSong.getArtist();
-        jsonKafkaTemplate.send("music.new-releases", savedSong);
+        Song copy = new Song();
+        copy.setId(savedSong.getId());
+        copy.setTitle(savedSong.getTitle());
+        copy.setArtist(savedSong.getArtist());
+        copy.setReleaseDate(savedSong.getReleaseDate());
+        jsonKafkaTemplate.send("music.new-releases", copy);
 
     }
 
