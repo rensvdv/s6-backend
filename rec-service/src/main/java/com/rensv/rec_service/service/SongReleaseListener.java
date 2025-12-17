@@ -1,6 +1,5 @@
 package com.rensv.rec_service.service;
 
-import com.rensv.rec_service.model.Song;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 @Service
